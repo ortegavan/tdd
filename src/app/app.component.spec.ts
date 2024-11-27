@@ -1,16 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
 import { HeaderComponent } from './shared/components/header/header.component';
-
-@Component({
-    selector: 'app-header',
-    standalone: true,
-    template: '',
-})
-class FakeHeaderComponent {}
+import { FakeHeaderComponent } from '../testing/mocks/fake-feader.component';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
