@@ -17,18 +17,20 @@ describe('ListComponent', () => {
     });
 
     it('deve listar as tarefas', () => {
-        const todo = fixture.debugElement.query(By.css('#todo'));
+        const todo = fixture.debugElement.query(By.css('[data-testid="todo"]'));
         expect(todo).toBeTruthy();
 
-        const todoItens = todo.query(By.css('ul')).queryAll(By.css('li'));
+        const todoItens = todo.queryAll(By.css('[data-testid="todo-item"]'));
         expect(todoItens.length).toBe(3);
 
-        const completed = fixture.debugElement.query(By.css('#completed'));
+        const completed = fixture.debugElement.query(
+            By.css('[data-testid="completed"]')
+        );
         expect(completed).toBeTruthy();
 
-        const completedItens = completed
-            .query(By.css('ul'))
-            .queryAll(By.css('li'));
+        const completedItens = completed.queryAll(
+            By.css('[data-testid="completed-item"]')
+        );
         expect(completedItens.length).toBe(3);
     });
 });
