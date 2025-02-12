@@ -13,7 +13,9 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
-        "paths": {},
+        "paths": {
+            "@testing/mocks/*": ["src/testing/mocks/*"]
+        },
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
