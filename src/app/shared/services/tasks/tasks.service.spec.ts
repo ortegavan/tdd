@@ -1,6 +1,7 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { TasksService } from './tasks.service';
+import { Task } from '../../interfaces/task.interface';
 
 describe('TasksService', () => {
     let service: TasksService;
@@ -11,7 +12,7 @@ describe('TasksService', () => {
     });
 
     it('deve retornar uma lista de tarefas', fakeAsync(() => {
-        let result: any;
+        let result: Task[] | null = null;
 
         service.getAll().subscribe((tasks) => {
             result = tasks;
