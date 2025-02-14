@@ -5,7 +5,7 @@ import { Task } from '../../interfaces/task.interface';
 @Injectable({
     providedIn: 'root',
 })
-export class TasksService {
+export class TaskService {
     getAll(): Observable<Task[]> {
         return of([
             { title: 'Task 1', completed: false },

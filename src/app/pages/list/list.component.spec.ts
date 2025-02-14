@@ -1,34 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { By } from '@angular/platform-browser';
-import { TasksService } from 'src/app/shared/services/tasks/tasks.service';
+import { TaskService } from 'src/app/shared/services/task/task.service';
 import { of } from 'rxjs';
 import { Task } from 'src/app/shared/interfaces/task.interface';
 
-class FakeTasksService implements TasksService {
+class FakeTaskService implements TaskService {
     getAll = jest.fn();
 }
 
 describe('ListComponent', () => {
     let fixture: ComponentFixture<ListComponent>;
-    let tasksService: TasksService;
+    let taskService: TaskService;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ListComponent],
             providers: [
                 {
-                    provide: TasksService,
-                    useClass: FakeTasksService,
+                    provide: TaskService,
+                    useClass: FakeTaskService,
                 },
             ],
         }).compileComponents();
 
-        tasksService = TestBed.inject(TasksService);
+        taskService = TestBed.inject(TaskService);
     });
 
     it('deve listar as tarefas', () => {
-        (tasksService.getAll as jest.Mock).mockReturnValue(
+        (taskService.getAll as jest.Mock).mockReturnValue(
             of([
                 { title: 'Task 1', completed: false },
                 { title: 'Task 2', completed: false },
@@ -50,7 +50,7 @@ describe('ListComponent', () => {
     });
 
     it('deve listar as tarefas concluídas', () => {
-        (tasksService.getAll as jest.Mock).mockReturnValue(
+        (taskService.getAll as jest.Mock).mockReturnValue(
             of([
                 { title: 'Task 1', completed: false },
                 { title: 'Task 2', completed: false },

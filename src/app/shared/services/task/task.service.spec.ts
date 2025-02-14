@@ -1,14 +1,13 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-
-import { TasksService } from './tasks.service';
+import { TaskService } from './task.service';
 import { Task } from '../../interfaces/task.interface';
 
 describe('TasksService', () => {
-    let service: TasksService;
+    let service: TaskService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(TasksService);
+        service = TestBed.inject(TaskService);
     });
 
     it('deve retornar uma lista de tarefas', fakeAsync(() => {
