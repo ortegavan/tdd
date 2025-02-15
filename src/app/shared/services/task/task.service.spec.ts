@@ -36,7 +36,7 @@ describe('TasksService', () => {
             { title: 'Task 6', completed: true },
         ];
 
-        const request = controller.expectOne('/tasks');
+        const request = controller.expectOne('/api/tasks');
         request.flush(fakeTasks);
 
         tick();
