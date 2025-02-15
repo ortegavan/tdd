@@ -4,10 +4,7 @@ import { By } from '@angular/platform-browser';
 import { TaskService } from 'src/app/shared/services/task/task.service';
 import { of } from 'rxjs';
 import { Task } from 'src/app/shared/interfaces/task.interface';
-
-class FakeTaskService implements TaskService {
-    getAll = jest.fn();
-}
+import { FakeTaskService } from '@testing/mocks/fake-task.service';
 
 describe('ListComponent', () => {
     let fixture: ComponentFixture<ListComponent>;
