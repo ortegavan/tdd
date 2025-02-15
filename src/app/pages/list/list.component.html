@@ -11,6 +11,8 @@
                     <h2 class="card-title">{{ task.title }}</h2>
                 </div>
             </div>
+            } @empty {
+            <app-no-items class="flex justify-center" />
             }
         </section>
 
@@ -25,6 +27,8 @@
                     <h2 class="card-title">{{ task.title }}</h2>
                 </div>
             </div>
+            } @empty {
+            <app-no-items class="flex justify-center" />
             }
         </section>
     </div>
