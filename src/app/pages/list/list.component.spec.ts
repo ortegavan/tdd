@@ -35,7 +35,7 @@ describe('ListComponent', () => {
         taskService = TestBed.inject(TaskService);
     });
 
-    it('deve listar as tarefas', () => {
+    it('deve listar as tarefas pendentes', () => {
         (taskService.getAll as jest.Mock).mockReturnValue(
             of([
                 { title: 'Task 1', completed: false },
@@ -55,6 +55,19 @@ describe('ListComponent', () => {
 
         const tasks = todo.queryAll(By.css('[data-testid="todo-item"]'));
         expect(tasks.length).toBe(3);
+
+        expect(tasks[0].componentInstance.task()).toEqual({
+            title: 'Task 1',
+            completed: false,
+        });
+        expect(tasks[1].componentInstance.task()).toEqual({
+            title: 'Task 2',
+            completed: false,
+        });
+        expect(tasks[2].componentInstance.task()).toEqual({
+            title: 'Task 3',
+            completed: false,
+        });
     });
 
     it('deve listar as tarefas concluídas', () => {
@@ -77,5 +90,18 @@ describe('ListComponent', () => {
 
         const tasks = done.queryAll(By.css('[data-testid="done-item"]'));
         expect(tasks.length).toBe(3);
+
+        expect(tasks[0].componentInstance.task()).toEqual({
+            title: 'Task 4',
+            completed: true,
+        });
+        expect(tasks[1].componentInstance.task()).toEqual({
+            title: 'Task 5',
+            completed: true,
+        });
+        expect(tasks[2].componentInstance.task()).toEqual({
+            title: 'Task 6',
+            completed: true,
+        });
     });
 });
