@@ -5,6 +5,8 @@ import { TaskService } from 'src/app/shared/services/task/task.service';
 import { of } from 'rxjs';
 import { Task } from 'src/app/shared/interfaces/task.interface';
 import { FakeTaskService } from '@testing/mocks/fake-task.service';
+import { FakeListItemComponent } from '@testing/mocks/fake-list-item.component';
+import { ListItemComponent } from '../list-item/list-item.component';
 
 describe('ListComponent', () => {
     let fixture: ComponentFixture<ListComponent>;
@@ -20,6 +22,15 @@ describe('ListComponent', () => {
                 },
             ],
         }).compileComponents();
+
+        TestBed.overrideComponent(ListComponent, {
+            remove: {
+                imports: [ListItemComponent],
+            },
+            add: {
+                imports: [FakeListItemComponent],
+            },
+        });
 
         taskService = TestBed.inject(TaskService);
     });
