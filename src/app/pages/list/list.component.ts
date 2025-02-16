@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Task } from 'src/app/shared/interfaces/task.interface';
 import { TaskService } from 'src/app/shared/services/task/task.service';
 import { NoItemsComponent } from '../no-items/no-items.component';
+import { ListItemComponent } from '../list-item/list-item.component';
 
 @Component({
     selector: 'app-list',
-    imports: [CommonModule, NoItemsComponent],
+    imports: [CommonModule, NoItemsComponent, ListItemComponent],
     templateUrl: './list.component.html',
     styleUrl: './list.component.scss',
 })
