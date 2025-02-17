@@ -1,5 +1,14 @@
 <div class="card bg-neutral text-neutral-content">
     <div class="card-body items-center text-center">
         <h2 class="card-title" data-testid="task-title">{{ task().title }}</h2>
+        <div class="w-full card-actions justify-end">
+            <button
+                class="btn btn-primary btn-xs"
+                data-testid="complete-action"
+                (click)="onComplete()"
+            >
+                Completar
+            </button>
+        </div>
     </div>
 </div>

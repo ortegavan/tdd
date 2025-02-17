@@ -1,3 +1,8 @@
 {
-    "tasks": []
+    "tasks": [
+        {
+            "title": "Task 1",
+            "completed": false
+        }
+    ]
 }
