@@ -3,7 +3,11 @@
         <section data-testid="todo" class="space-y-4 my-4">
             <h1 class="text-center">Tarefas pendentes</h1>
             @for (task of todoTasks(); track $index) {
-            <app-list-item [task]="task" data-testid="todo-item" />
+            <app-list-item
+                [task]="task"
+                data-testid="todo-item"
+                (completed)="onComplete($event)"
+            />
             } @empty {
             <app-no-items class="flex justify-center" />
             }
