@@ -7,10 +7,12 @@ import { Task } from 'src/app/shared/interfaces/task.interface';
 import { FakeTaskService } from '@testing/mocks/fake-task.service';
 import { FakeListItemComponent } from '@testing/mocks/fake-list-item.component';
 import { ListItemComponent } from '../list-item/list-item.component';
+import { TestHelper } from '@testing/helpers/test-helper';
 
 describe('ListComponent', () => {
     let fixture: ComponentFixture<ListComponent>;
     let taskService: TaskService;
+    let helper: TestHelper<ListComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -32,6 +34,9 @@ describe('ListComponent', () => {
             },
         });
 
+        fixture = TestBed.createComponent(ListComponent);
+        helper = new TestHelper(fixture);
+
         taskService = TestBed.inject(TaskService);
     });
 
@@ -47,7 +52,6 @@ describe('ListComponent', () => {
             ] as Task[])
         );
 
-        fixture = TestBed.createComponent(ListComponent);
         fixture.detectChanges();
 
         const todo = fixture.debugElement.query(By.css('[data-testid="todo"]'));
@@ -82,7 +86,6 @@ describe('ListComponent', () => {
             ] as Task[])
         );
 
-        fixture = TestBed.createComponent(ListComponent);
         fixture.detectChanges();
 
         const done = fixture.debugElement.query(By.css('[data-testid="done"]'));
@@ -102,6 +105,32 @@ describe('ListComponent', () => {
         expect(tasks[2].componentInstance.task()).toEqual({
             title: 'Task 6',
             completed: true,
+        });
+    });
+
+    describe('quando a tarefa está pendente', () => {
+        it('deve completar uma tarefa', () => {
+            const fakeTask: Task = {
+                id: '1',
+                title: 'Task 1',
+                completed: false,
+            };
+            const fakeTasks: Task[] = [fakeTask];
+
+            (taskService.getAll as jest.Mock).mockReturnValue(of(fakeTasks));
+
+            fixture.detectChanges();
+
+            expect(helper.queryByTestId('done-item')).toBeNull();
+
+            const todoItem = helper.queryByTestId('todo-item');
+            todoItem.componentInstance.completed.emit(fakeTask);
+
+            expect(taskService.patch).toHaveBeenCalledWith(fakeTask.id, {
+                completed: true,
+            });
+
+            expect(helper.queryByTestId('done-item')).toBeTruthy();
         });
     });
 });
